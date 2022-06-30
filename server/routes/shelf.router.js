@@ -21,8 +21,21 @@ router.post('/', (req, res) => {
  */
 router.delete('/:id', (req, res) => {
   // endpoint functionality
+  let queryText = `
+  DELETE FROM item 
+	WHERE id=$1 
+	AND user_id =$2;
+  `
+  const sqlParms = 
+  [ req.params.id, 
+    req.user.id];
+  pool.query(queryText, sqlParms).then(() => {
+    res.sendStatus(200);
+ }).catch((error) => {
+     console.log('error getting delete :id', error);
+     res.sendStatus(500);
 });
-
+});
 /**
  * Update an item if it's something the logged in user added
  */
