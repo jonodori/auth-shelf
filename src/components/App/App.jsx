@@ -19,7 +19,11 @@ import ShelfPage from '../ShelfPage/ShelfPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+
 import ShelfForm from '../ShelfForm/ShelfForm';
+
+import ShelfItem from '../ShelfItem/ShelfItem';
+
 
 import './App.css';
 
@@ -61,9 +65,9 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRouteoute exact path='/shelf/form'>
+          <ProtectedRoute exact path='/shelf/form'>
             <ShelfForm />
-          </ProtectedRouteoute>
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
