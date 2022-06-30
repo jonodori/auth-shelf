@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
       VALUES ($1, $2, $3)
   `
 
-  pool.query(sqlQuery)
+  pool.query(sqlQuery, [req.body.desc, req.body.imgSrc, req.user.id])
     .then(() => {console.log('post success'); res.sendStatus(201);})
     .catch((err) => {console.log('post failed', err); res.sendStatus(500)});
 });
