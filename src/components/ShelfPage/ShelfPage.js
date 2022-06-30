@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useDispatch } from 'react';
 
+const items = useSelector((store) => store.shelf)
+
 function ShelfPage() {
   const dispatch = useDispatch();
 
@@ -14,7 +16,13 @@ function ShelfPage() {
   return (
     <div className="container">
       <h2>Shelf</h2>
-      <p>All of the available items can be seen here.</p>
+      
+    {items.map (item => (
+      <ul>
+      <ShelfPage key={item.id} item={item}/>
+      </ul>
+     
+      ))}
     </div>
   );
 }
