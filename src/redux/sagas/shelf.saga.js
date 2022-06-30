@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchShelf() {
     console.log('in fetchShelf saga');
     try {
-        const response = yield axios.get('/api/shelf', response.data)
+        const response = yield axios.get('/api/shelf')
         yield put({
             type: 'SET_SHELF',
             payload: response.data
@@ -17,7 +17,18 @@ function* fetchShelf() {
     }
 }
 
+function* addShelfItem (action) {
+    try {
+        const res = yield axios.post('/api/shelf', action.payload )
+        yield put ({type: 'FETCH_SHELF'});
+    }
+    catch(err) {
+        console.log('shelf POST failure', err )
+    }
+}
+
 function* shelfSaga() {
+    yield takeLatest ('ADD_SHELF_ITEM', addShelfItem)
     yield takeLatest('FETCH_SHELF', fetchShelf);
 }
 

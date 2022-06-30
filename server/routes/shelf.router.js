@@ -28,6 +28,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
+  const sqlQuery = `
+    INSERT INTO "item" (description, image_url, "user_id")
+      VALUES ($1, $2, $3)
+  `
+
+  pool.query(sqlQuery)
+    .then(() => {console.log('post success'); res.sendStatus(201);})
+    .catch((err) => {console.log('post failed', err); res.sendStatus(500)});
 });
 
 /**
