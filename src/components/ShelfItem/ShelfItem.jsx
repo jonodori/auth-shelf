@@ -4,14 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 function ShelfItem(item){
     return (
-        <>
+        
         <li>
-            {item.id} 
-            {item.description} 
-           <img src= {item.image_url} />
-            {item.user_id}
+        {item.description} 
+        <img src= {item.image_url} />
         </li>
-        </>
+        
     )
 }
 export default ShelfItem; 
